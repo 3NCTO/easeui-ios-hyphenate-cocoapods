@@ -13,6 +13,7 @@
 #include "interf_dec.h"
 #include "interf_enc.h"
 
+
 #define AMR_MAGIC_NUMBER "#!AMR\n"
 #define MP3_MAGIC_NUMBER "ID3"
 

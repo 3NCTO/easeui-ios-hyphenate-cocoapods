@@ -94,4 +94,6 @@ typedef NS_ENUM(int, DXDeleteConvesationType) {
  */
 - (void)refreshAndSortView;
 
+
+- (void)updateData;
 @end

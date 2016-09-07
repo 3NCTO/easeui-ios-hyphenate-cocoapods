@@ -80,8 +80,11 @@
     cell.model = model;
     
     if (_dataSource && [_dataSource respondsToSelector:@selector(conversationListViewController:latestMessageTitleForConversationModel:)]) {
-        cell.detailLabel.attributedText =  [[EaseEmotionEscape sharedInstance] attStringFromTextForChatting:[_dataSource conversationListViewController:self latestMessageTitleForConversationModel:model] textFont:cell.detailLabel.font];
+        NSMutableAttributedString *attributedText = [[_dataSource conversationListViewController:self latestMessageTitleForConversationModel:model] mutableCopy];
+        [attributedText addAttributes:@{NSFontAttributeName : cell.detailLabel.font} range:NSMakeRange(0, attributedText.length)];
+        cell.detailLabel.attributedText =  attributedText;
     } else {
+
         cell.detailLabel.attributedText =  [[EaseEmotionEscape sharedInstance] attStringFromTextForChatting:[self _latestMessageTitleForConversationModel:model]textFont:cell.detailLabel.font];
     }
     
@@ -132,25 +135,30 @@
 
 #pragma mark - data
 
+- (void)updateData{
+    
+    [self.tableView reloadData];
+}
+
 -(void)refreshAndSortView
 {
-    if ([self.dataArray count] > 1) {
-        if ([[self.dataArray objectAtIndex:0] isKindOfClass:[EaseConversationModel class]]) {
-            NSArray* sorted = [self.dataArray sortedArrayUsingComparator:
-                               ^(EaseConversationModel *obj1, EaseConversationModel* obj2){
-                                   EMMessage *message1 = [obj1.conversation latestMessage];
-                                   EMMessage *message2 = [obj2.conversation latestMessage];
-                                   if(message1.timestamp > message2.timestamp) {
-                                       return(NSComparisonResult)NSOrderedAscending;
-                                   }else {
-                                       return(NSComparisonResult)NSOrderedDescending;
-                                   }
-                               }];
-            [self.dataArray removeAllObjects];
-            [self.dataArray addObjectsFromArray:sorted];
-        }
-    }
-    [self.tableView reloadData];
+//    if ([self.dataArray count] > 1) {
+//        if ([[self.dataArray objectAtIndex:0] isKindOfClass:[EaseConversationModel class]]) {
+//            NSArray* sorted = [self.dataArray sortedArrayUsingComparator:
+//                               ^(EaseConversationModel *obj1, EaseConversationModel* obj2){
+//                                   EMMessage *message1 = [obj1.conversation latestMessage];
+//                                   EMMessage *message2 = [obj2.conversation latestMessage];
+//                                   if(message1.timestamp > message2.timestamp) {
+//                                       return(NSComparisonResult)NSOrderedAscending;
+//                                   }else {
+//                                       return(NSComparisonResult)NSOrderedDescending;
+//                                   }
+//                               }];
+//            [self.dataArray removeAllObjects];
+//            [self.dataArray addObjectsFromArray:sorted];
+//        }
+//    }
+    [self tableViewDidTriggerHeaderRefresh];
 }
 
 - (void)tableViewDidTriggerHeaderRefresh
@@ -185,7 +193,7 @@
         }
     }
     
-    [self.tableView reloadData];
+    [self updateData];
     [self tableViewDidFinishTriggerHeader:YES reload:NO];
 }
 
