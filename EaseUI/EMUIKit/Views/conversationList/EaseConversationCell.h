@@ -17,7 +17,7 @@
 #import "IModelCell.h"
 #import "EaseImageView.h"
 
-static CGFloat EaseConversationCellMinHeight = 60;
+static CGFloat EaseConversationCellMinHeight = 68;
 
 @interface EaseConversationCell : UITableViewCell<IModelCell>
 

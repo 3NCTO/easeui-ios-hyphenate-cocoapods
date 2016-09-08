@@ -151,7 +151,7 @@
     //转变输入样式
     UIButton *styleChangeButton = [[UIButton alloc] init];
     styleChangeButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    [styleChangeButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_record"] forState:UIControlStateNormal];
+    [styleChangeButton setImage:[UIImage imageNamed:@"chat_voice"] forState:UIControlStateNormal];
     [styleChangeButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_keyboard"] forState:UIControlStateSelected];
     [styleChangeButton addTarget:self action:@selector(styleButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -178,8 +178,8 @@
     //表情
     self.faceButton = [[UIButton alloc] init];
     self.faceButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    [self.faceButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_face"] forState:UIControlStateNormal];
-    [self.faceButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_faceSelected"] forState:UIControlStateHighlighted];
+    [self.faceButton setImage:[UIImage imageNamed:@"chat_face"] forState:UIControlStateNormal];
+    [self.faceButton setImage:[UIImage imageNamed:@"chat_face"] forState:UIControlStateHighlighted];
     [self.faceButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_keyboard"] forState:UIControlStateSelected];
     [self.faceButton addTarget:self action:@selector(faceButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     EaseChatToolbarItem *faceItem = [[EaseChatToolbarItem alloc] initWithButton:self.faceButton withView:self.faceView];
@@ -187,8 +187,8 @@
     //更多
     self.moreButton = [[UIButton alloc] init];
     self.moreButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    [self.moreButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_more"] forState:UIControlStateNormal];
-    [self.moreButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_moreSelected"] forState:UIControlStateHighlighted];
+    [self.moreButton setImage:[UIImage imageNamed:@"chat_vadd"] forState:UIControlStateNormal];
+    [self.moreButton setImage:[UIImage imageNamed:@"chat_vadd"] forState:UIControlStateHighlighted];
     [self.moreButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_keyboard"] forState:UIControlStateSelected];
     [self.moreButton addTarget:self action:@selector(moreButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     EaseChatToolbarItem *moreItem = [[EaseChatToolbarItem alloc] initWithButton:self.moreButton withView:self.moreView];
