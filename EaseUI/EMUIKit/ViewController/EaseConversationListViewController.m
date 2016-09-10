@@ -158,6 +158,7 @@
 //            [self.dataArray addObjectsFromArray:sorted];
 //        }
 //    }
+    
     [self tableViewDidTriggerHeaderRefresh];
 }
 
