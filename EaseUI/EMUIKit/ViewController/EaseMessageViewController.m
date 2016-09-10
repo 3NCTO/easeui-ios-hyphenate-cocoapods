@@ -120,10 +120,11 @@
     [[EaseBaseMessageCell appearance] setRecvMessageVoiceAnimationImages:@[[UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing_full"],[UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing000"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing001"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing002"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing003"]]];
     
     [[EaseBaseMessageCell appearance] setAvatarSize:40.f];
-    [[EaseBaseMessageCell appearance] setAvatarCornerRadius:20.f];
-    
+    [[EaseBaseMessageCell appearance] setAvatarCornerRadius:5.f];
     [[EaseChatBarMoreView appearance] setMoreViewBackgroundColor:[UIColor colorWithRed:240 / 255.0 green:242 / 255.0 blue:247 / 255.0 alpha:1.0]];
     
+    
+    [EaseBaseMessageCell appearance].messageNameIsHidden = YES;
     [self tableViewDidTriggerHeaderRefresh];
     
     [self setupEmotion];
@@ -953,8 +954,20 @@
             sendCell.selectionStyle = UITableViewCellSelectionStyleNone;
             sendCell.delegate = self;
         }
-        sendCell.bubbleMaxWidth = [UIScreen mainScreen].bounds.size.width-134;
         sendCell.model = model;
+        if (model.isSender) {
+            sendCell.messageTextColor = [UIColor whiteColor];
+            sendCell.messageLocationColor = [UIColor whiteColor];
+            sendCell.messageVoiceDurationColor = [UIColor whiteColor];
+            sendCell.messageFileNameColor = [UIColor whiteColor];
+            sendCell.messageFileSizeColor = [UIColor whiteColor];
+        }else{
+            sendCell.messageTextColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+            sendCell.messageLocationColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+            sendCell.messageVoiceDurationColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+            sendCell.messageFileNameColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+            sendCell.messageFileSizeColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+        }
         return sendCell;
     }
 }

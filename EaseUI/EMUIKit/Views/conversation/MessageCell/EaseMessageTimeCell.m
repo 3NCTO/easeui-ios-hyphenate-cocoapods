@@ -26,8 +26,9 @@ CGFloat const EaseMessageTimeCellPadding = 5;
 {
     // UIAppearance Proxy Defaults
     EaseMessageTimeCell *cell = [self appearance];
-    cell.titleLabelColor = [UIColor grayColor];
+    cell.titleLabelColor = [UIColor whiteColor];
     cell.titleLabelFont = [UIFont systemFontOfSize:12];
+    
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
@@ -49,9 +50,11 @@ CGFloat const EaseMessageTimeCellPadding = 5;
     _titleLabel = [[UILabel alloc] init];
     _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _titleLabel.textAlignment = NSTextAlignmentCenter;
-    _titleLabel.backgroundColor = [UIColor clearColor];
     _titleLabel.textColor = _titleLabelColor;
     _titleLabel.font = _titleLabelFont;
+    _titleLabel.backgroundColor = [UIColor colorWithRed:195/255.0 green:195/255.0 blue:195/255.0 alpha:1];
+    _titleLabel.layer.cornerRadius = 4;
+    _titleLabel.clipsToBounds = YES;
     [self.contentView addSubview:_titleLabel];
     
     [self _setupTitleLabelConstraints];
@@ -64,15 +67,14 @@ CGFloat const EaseMessageTimeCellPadding = 5;
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeTop multiplier:1.0 constant:EaseMessageTimeCellPadding]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-EaseMessageTimeCellPadding]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-EaseMessageTimeCellPadding]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:EaseMessageTimeCellPadding]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeRight multiplier:0.5 constant:0]];
 }
 
 #pragma mark - setter
 
 - (void)setTitle:(NSString *)title
 {
-    _title = title;
+    _title = [NSString stringWithFormat:@"%@    ",title];
     _titleLabel.text = _title;
 }
 
