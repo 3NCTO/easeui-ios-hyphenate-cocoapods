@@ -124,7 +124,6 @@
     [[EaseChatBarMoreView appearance] setMoreViewBackgroundColor:[UIColor colorWithRed:240 / 255.0 green:242 / 255.0 blue:247 / 255.0 alpha:1.0]];
     
     
-    [EaseBaseMessageCell appearance].messageNameIsHidden = YES;
     [self tableViewDidTriggerHeaderRefresh];
     
     [self setupEmotion];

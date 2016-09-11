@@ -234,6 +234,7 @@
     
     if (self.model.isSender) {
         _hasRead.hidden = YES;
+        self.messageNameIsHidden = YES;
         switch (self.model.messageStatus) {
             case EMMessageStatusDelivering:
             {
@@ -263,6 +264,7 @@
                 break;
         }
     }else{
+        self.messageNameIsHidden = NO;
     }
 }
 
