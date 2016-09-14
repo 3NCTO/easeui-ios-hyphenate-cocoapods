@@ -26,12 +26,24 @@
 #import "UIImage+GIF.h"
 #import "EaseLocalDefine.h"
 
-#define kGroupMessageAtList      @"em_at_list"
+#define kGroupMessageAtList      @"em_at_message"
 #define kGroupMessageAtAll       @"all"
 
 #define KHintAdjustY    50
 
 #define IOS_VERSION [[UIDevice currentDevice] systemVersion]>=9.0
+
+@implementation EaseAtTarget
+- (instancetype)initWithUserId:(NSString*)userId andNickname:(NSString*)nickname
+{
+    if (self = [super init]) {
+        _userId = [userId copy];
+        _nickname = [nickname copy];
+    }
+    return self;
+}
+@end
+
 
 @interface EaseMessageViewController ()
 {
@@ -80,7 +92,13 @@
     
     return self;
 }
-
+- (NSMutableArray*)atTargets
+{
+    if (!_atTargets) {
+        _atTargets = [NSMutableArray array];
+    }
+    return _atTargets;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -1644,7 +1662,26 @@
 
 - (void)sendTextMessage:(NSString *)text
 {
-    [self sendTextMessage:text withExt:nil];
+    NSDictionary *ext = nil;
+    if (self.conversation.type == EMConversationTypeGroupChat) {
+        NSArray *targets = [self _searchAtTargets:text];
+        if ([targets count]) {
+            __block BOOL atAll = NO;
+            [targets enumerateObjectsUsingBlock:^(NSString *target, NSUInteger idx, BOOL *stop) {
+                if ([target compare:kGroupMessageAtAll options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+                    atAll = YES;
+                    *stop = YES;
+                }
+            }];
+            if (atAll) {
+                ext = @{kGroupMessageAtList: kGroupMessageAtAll};
+            }
+            else {
+                ext = @{kGroupMessageAtList: targets};
+            }
+        }
+    }
+    [self sendTextMessage:text withExt:ext];
 }
 
 - (void)sendTextMessage:(NSString *)text withExt:(NSDictionary*)ext
