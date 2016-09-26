@@ -11,7 +11,6 @@
  */
 
 #import <Foundation/Foundation.h>
-
 #import "IConversationModel.h"
 
 @interface EaseConversationModel : NSObject<IConversationModel>

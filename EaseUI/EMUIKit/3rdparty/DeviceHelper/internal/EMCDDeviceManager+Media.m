@@ -54,8 +54,13 @@ typedef NS_ENUM(NSInteger, EMAudioSession){
         [self setupAudioSessionCategory:EM_AUDIOPLAYER
                                isActive:YES];
     }
+    
     NSFileManager *fileManager = [NSFileManager defaultManager];
+
     NSString *wavFilePath = [[aFilePath stringByDeletingPathExtension] stringByAppendingPathExtension:@"wav"];
+    if ([[aFilePath componentsSeparatedByString:@"."].lastObject isEqualToString:@"mp3"]) {
+        wavFilePath = aFilePath;
+    }
     //如果转换后的wav文件不存在, 则去转换一下
     if (![fileManager fileExistsAtPath:wavFilePath]) {
         BOOL covertRet = [self convertAMR:aFilePath toWAV:wavFilePath];
