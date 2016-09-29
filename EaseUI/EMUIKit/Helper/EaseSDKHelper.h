@@ -46,6 +46,12 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
                    messageType:(EMChatType)messageType
                     messageExt:(NSDictionary *)messageExt;
 
++ (EMMessage *)sendCmdMessage:(NSString *)action
+                           to:(NSString *)to
+                  messageType:(EMChatType)messageType
+                   messageExt:(NSDictionary *)messageExt
+                    cmdParams:(NSArray *)params;
+
 + (EMMessage *)sendLocationMessageWithLatitude:(double)latitude
                                      longitude:(double)longitude
                                        address:(NSString *)address
