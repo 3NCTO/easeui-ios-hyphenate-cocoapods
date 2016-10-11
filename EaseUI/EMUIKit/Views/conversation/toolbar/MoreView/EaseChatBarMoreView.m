@@ -11,6 +11,7 @@
  */
 
 #import "EaseChatBarMoreView.h"
+#import "DiyBtn.h"
 
 #define CHAT_BUTTON_SIZE 50
 #define INSETS 10
@@ -85,15 +86,16 @@
     
     CGFloat insets = (self.frame.size.width - 4 * CHAT_BUTTON_SIZE) / 5;
     
-    _photoButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    [_photoButton setFrame:CGRectMake(insets, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
+    _photoButton =[[DiyBtn alloc] init];
+    [_photoButton setFrame:CGRectMake(insets, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE+17)];
     [_photoButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_photo"] forState:UIControlStateNormal];
     [_photoButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_photoSelected"] forState:UIControlStateHighlighted];
+    [_photoButton setTitle:@"图 片" forState:UIControlStateNormal];
     [_photoButton addTarget:self action:@selector(photoAction) forControlEvents:UIControlEventTouchUpInside];
     _photoButton.tag = MOREVIEW_BUTTON_TAG;
     [_scrollview addSubview:_photoButton];
     
-    _locationButton =[UIButton buttonWithType:UIButtonTypeCustom];
+    _locationButton =[[DiyBtn alloc] init];
     [_locationButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
     [_locationButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_location"] forState:UIControlStateNormal];
     [_locationButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_locationSelected"] forState:UIControlStateHighlighted];
@@ -101,10 +103,11 @@
     _locationButton.tag = MOREVIEW_BUTTON_TAG + 1;
 //    [_scrollview addSubview:_locationButton];
     
-    _takePicButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    [_takePicButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE , 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
+    _takePicButton =[[DiyBtn alloc] init];
+    [_takePicButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE , 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE+17)];
     [_takePicButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_camera"] forState:UIControlStateNormal];
     [_takePicButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_cameraSelected"] forState:UIControlStateHighlighted];
+    [_takePicButton setTitle:@"拍照/视频" forState:UIControlStateNormal];
     [_takePicButton addTarget:self action:@selector(takePicAction) forControlEvents:UIControlEventTouchUpInside];
     _takePicButton.tag = MOREVIEW_BUTTON_TAG + 2;
     _maxIndex = 2;
@@ -132,7 +135,7 @@
     }
     else if (type == EMChatToolbarTypeGroup)
     {
-        frame.size.height = 80;
+        frame.size.height = 85;
     }
     self.frame = frame;
     _scrollview.frame = CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame));

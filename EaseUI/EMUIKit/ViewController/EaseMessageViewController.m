@@ -26,6 +26,7 @@
 #import "UIImage+GIF.h"
 #import "EaseLocalDefine.h"
 
+
 #define kGroupMessageAtList      @"em_at_message"
 #define kGroupMessageAtAll       @"all"
 
@@ -672,7 +673,9 @@
         }
     }];
 }
-
+- (void)showBrowserWithImage:(UIImage *)image url:(NSString *)localPath{
+    [[EaseMessageReadManager defaultManager] showBrowserWithImages:@[image]];
+}
 - (void)_imageMessageCellSelected:(id<IMessageModel>)model
 {
     __weak EaseMessageViewController *weakSelf = self;
@@ -690,7 +693,8 @@
                     
                     if (image)
                     {
-                        [[EaseMessageReadManager defaultManager] showBrowserWithImages:@[image]];
+                        
+                        [self showBrowserWithImage:image url:localPath];
                     }
                     else
                     {

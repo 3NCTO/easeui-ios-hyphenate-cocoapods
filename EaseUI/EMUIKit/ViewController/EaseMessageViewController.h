@@ -199,5 +199,5 @@ shouldSendHasReadAckForMessage:(EMMessage *)message
 
 -(BOOL)shouldSendHasReadAckForMessage:(EMMessage *)message
                                  read:(BOOL)read;
-
+- (void)showBrowserWithImage:(UIImage *)image url:(NSString *)localPath;
 @end
