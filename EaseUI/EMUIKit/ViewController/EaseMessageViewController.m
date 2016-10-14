@@ -715,7 +715,7 @@
                         //                                weakSelf.isScrollToBottom = NO;
                         if (image)
                         {
-                            [[EaseMessageReadManager defaultManager] showBrowserWithImages:@[image]];
+                            [self showBrowserWithImage:image url:localPath];
                         }
                         else
                         {
