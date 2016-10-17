@@ -673,7 +673,7 @@
         }
     }];
 }
-- (void)showBrowserWithImage:(UIImage *)image url:(NSString *)localPath{
+- (void)showBrowserWithImage:(UIImage *)image url:(NSString *)localPath model:(id<IMessageModel>)model{
     [[EaseMessageReadManager defaultManager] showBrowserWithImages:@[image]];
 }
 - (void)_imageMessageCellSelected:(id<IMessageModel>)model
@@ -694,7 +694,7 @@
                     if (image)
                     {
                         
-                        [self showBrowserWithImage:image url:localPath];
+                        [self showBrowserWithImage:image url:localPath model:model];
                     }
                     else
                     {
@@ -715,7 +715,7 @@
                         //                                weakSelf.isScrollToBottom = NO;
                         if (image)
                         {
-                            [self showBrowserWithImage:image url:localPath];
+                            [self showBrowserWithImage:image url:localPath model:model];
                         }
                         else
                         {
