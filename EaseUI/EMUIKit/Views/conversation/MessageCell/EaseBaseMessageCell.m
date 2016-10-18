@@ -120,6 +120,27 @@
             break;
         case EMMessageBodyTypeVideo:
         {
+            CGSize retSize = self.model.thumbnailImageSize;
+            if (retSize.width == 0 || retSize.height == 0) {
+                retSize.width = kEMMessageImageSizeWidth;
+                retSize.height = kEMMessageImageSizeHeight;
+            }
+            else if (retSize.width > retSize.height) {
+                CGFloat height =  kEMMessageImageSizeWidth / retSize.width * retSize.height;
+                retSize.height = height;
+                retSize.width = kEMMessageImageSizeWidth;
+            }
+            else {
+                CGFloat width = kEMMessageImageSizeHeight / retSize.height * retSize.width;
+                retSize.width = width;
+                retSize.height = kEMMessageImageSizeHeight;
+            }
+            [self removeConstraint:self.bubbleWithImageConstraint];
+            
+            CGFloat margin = [EaseMessageCell appearance].leftBubbleMargin.left + [EaseMessageCell appearance].leftBubbleMargin.right;
+            self.bubbleWithImageConstraint = [NSLayoutConstraint constraintWithItem:self.bubbleView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:retSize.width + margin];
+            
+            [self addConstraint:self.bubbleWithImageConstraint];
         }
             break;
         case EMMessageBodyTypeFile:
