@@ -128,7 +128,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     if ([otherConfig objectForKey:kSDKConfigEnableConsoleLogger]) {
         options.enableConsoleLog = YES;
     }
-    
+//    EMClient *client = [EMClient sharedClient];
+//    client.pushOptions.displayStyle = EMPushDisplayStyleMessageSummary;
+//    
+//    [client updatePushOptionsToServer];
     BOOL sandBox = [otherConfig objectForKey:@"easeSandBox"] && [[otherConfig objectForKey:@"easeSandBox"] boolValue];
     if (!sandBox) {
         [[EMClient sharedClient] initializeSDKWithOptions:options];
