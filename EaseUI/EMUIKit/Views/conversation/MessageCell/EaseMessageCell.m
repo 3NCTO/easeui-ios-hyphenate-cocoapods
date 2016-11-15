@@ -68,7 +68,7 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
     cell.rightBubbleMargin = UIEdgeInsetsMake(8, 10, 8, 15);
     cell.bubbleMargin = UIEdgeInsetsMake(8, 0, 8, 0);
     
-    cell.messageTextFont = [UIFont systemFontOfSize:15];
+    cell.messageTextFont = [UIFont systemFontOfSize:17];
     cell.messageTextColor = [UIColor blackColor];
     
     cell.messageLocationFont = [UIFont systemFontOfSize:10];
@@ -731,7 +731,11 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
         {
             NSAttributedString *text = [[EaseEmotionEscape sharedInstance] attStringFromTextForChatting:model.text textFont:cell.messageTextFont];
             CGRect rect = [text boundingRectWithSize:CGSizeMake(bubbleMaxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading context:nil];
-            height += (rect.size.height > 20 ? rect.size.height : 20) + 10;
+            
+            height += (rect.size.height > 20 ? rect.size.height : 20)+10;
+            if (model.isSender) {
+                height-=11;
+            }
 //            NSString *text = model.text;
 //            UIFont *textFont = cell.messageTextFont;
 //            CGSize retSize;
@@ -775,6 +779,9 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
         case EMMessageBodyTypeVoice:
         {
             height += kEMMessageVoiceHeight;
+            if (model.isSender) {
+                height-=5;
+            }
         }
             break;
         case EMMessageBodyTypeFile:
