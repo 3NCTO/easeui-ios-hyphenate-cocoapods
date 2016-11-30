@@ -11,7 +11,7 @@
   */
 
 #import "EMChooseViewController.h"
-#import "ChatModel.h"
+#import <UIViewController+HUD.h>
 
 @interface EMChooseViewController ()
 

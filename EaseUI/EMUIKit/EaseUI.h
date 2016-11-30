@@ -43,6 +43,7 @@
 #import "UIViewController+HUD.h"
 #import "UIViewController+DismissKeyboard.h"
 #import "EaseLocalDefine.h"
+#import <EaseUI/EMChooseViewController.h>
 
 #else
 
@@ -72,6 +73,7 @@
 #import <EaseUI/UIViewController+HUD.h>
 #import <EaseUI/UIViewController+DismissKeyboard.h>
 #import <EaseUI/EaseLocalDefine.h>
+#import <EaseUI/EMChooseViewController.h>
 
 #endif
 
