@@ -52,7 +52,7 @@ CGFloat const EaseMessageTimeCellPadding = 5;
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.textColor = _titleLabelColor;
     _titleLabel.font = _titleLabelFont;
-    _titleLabel.backgroundColor = [UIColor colorWithRed:195/255.0 green:195/255.0 blue:195/255.0 alpha:1];
+    //_titleLabel.backgroundColor = [UIColor colorWithRed:195/255.0 green:195/255.0 blue:195/255.0 alpha:1];
     _titleLabel.layer.cornerRadius = 4;
     _titleLabel.clipsToBounds = YES;
     [self.contentView addSubview:_titleLabel];
