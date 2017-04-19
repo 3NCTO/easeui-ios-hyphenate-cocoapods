@@ -64,11 +64,11 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
     cell.statusSize = 20;
     cell.activitySize = 20;
     cell.bubbleMaxWidth = [UIScreen mainScreen].bounds.size.width-134;
-    cell.leftBubbleMargin = UIEdgeInsetsMake(8, 15, 8, 10);
-    cell.rightBubbleMargin = UIEdgeInsetsMake(8, 10, 8, 15);
+    cell.leftBubbleMargin = UIEdgeInsetsMake(8, 23, 8, 13);
+    cell.rightBubbleMargin = UIEdgeInsetsMake(8, 13, 8, 23);
     cell.bubbleMargin = UIEdgeInsetsMake(8, 0, 8, 0);
     
-    cell.messageTextFont = [UIFont systemFontOfSize:17];
+    cell.messageTextFont = [UIFont systemFontOfSize:15];
     cell.messageTextColor = [UIColor blackColor];
     
     cell.messageLocationFont = [UIFont systemFontOfSize:10];
